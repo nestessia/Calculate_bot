@@ -1,11 +1,11 @@
 from math import sqrt
-from math import sin
+import math
 
 def task(x: float):
     return x*x+5*x+3
 
 def KratInt(x:float, y:float):
-    return sin(x+y)
+    return math.sin(x+y)
 
 def left(n: int, A:float, B:float):
     h = (B - A) / n
@@ -84,7 +84,53 @@ def kratniy(nx:int, ny:int, A:float, B:float, C:float, D:float):
         x += hx
     return S*hx*hy
 
+def e(x):
+    a = [0.9999998, 1.000000, 0.5000063, 0.1666674, 0.0416350, 0.0083298, 0.0014393, 0.0002040]
+    k = 1
+    U = 1.0
+    C = a[0]
+    P = 1
+    e = 2 * math.pow(10, -7)
+    x = math.fabs(x)
+    while (math.fabs(U) > e):
+        P *= x
+        U = P * a[k]
+        C += U
+        if k >= 7:
+            break
+        else:
+            k += 1
+    return C
 
+def sin(x):
+    a = [1.000000002, -0.166666599, 0.008333075, -0.000198107, 0.000002608]
+    k = 1
+    U = 1.0
+    P = 1
+    pi = 3.14
+    e = 6 * math.pow(10, -9)
+    x = (pi * x) / 180
+    C = a[0] * x
+    while (math.fabs(U) > e):
+        P *= x**2
+        U = P * a[k] * x
+        C += U
+        if k >= 4:
+            break
+        else:
+            k += 1
+    return C
+def MetodIteraciy1(x:float, y0:float, ebs:float):
+    res = y0
+    while abs(x-res**2)>ebs:
+        res = (1/2)*(res + x / res)
+    return res
+
+def MetodIteraciy2(x:float, y0:float, ebs:float):
+    res = y0
+    while abs(x - (1/res)**2) > ebs:
+        res = (res / 2)*(3 - x * res**2)
+    return res
 
 special1 = True
 while special1 == True:
@@ -92,6 +138,7 @@ while special1 == True:
     print("Welcome to MainMenu")
     print("Для выбора задачи нажмите соответствующую кнопку:")
     print('[1]Численное интегрирование\n'
+          '[2]Вычисление элементарной функции\n'
           'more will comming soon')
     mean1 = int(input())
 
@@ -219,7 +266,58 @@ while special1 == True:
                 print("Введите внутреннюю верхнюю границу")
                 D = float(input())
                 res = kratniy(nx, ny, A, B, C, D)
-                print("Результат",res,'\n')
+                print("Результат: ", res, '\n')
 
             elif mean2 == 4:
+                special2 = False
+    elif mean1 == 2:
+        while special2 == True:
+            special3 = True
+            print("Выберите:\n"
+                  "[1] Вычисление показательной функции e^x\n"
+                  "[2] Вычисление функции sin(x)\n"
+                  "[3] Метод итераций для sqrt(x)\n"
+                  "[4] Метод итераций для 1/sqrt(x)")
+            print("Для выхода в меню введите '5'")
+            mean2 = int(input())
+
+            if mean2 == 1:
+                print("Выбрано вычисление показательной функции e^x")
+                print("Введите x (x<=1)")
+                x = float(input())
+                res = e(x)
+                print("Результат: ", res, '\n')
+
+            if mean2 == 2:
+                print("Выбрано вычисление функции sin(x)")
+                print("Введите x в градусах (x <= pi/2)")
+                x = float(input())
+                res = sin(x)
+                print("Результат: ", res, '\n')
+
+            if mean2 == 3:
+                print("Выбран метод итераций")
+                print("Вычисление sqrt(x)")
+                print("Введите x")
+                x = float(input())
+                print("Введите y0")
+                y0 = float(input())
+                print("Введите точность")
+                ebs = float(input())
+                res = MetodIteraciy1(x, y0, ebs)
+                print("Результат: ", res, '\n')
+
+            elif mean2 == 4:
+                print("Выбран метод итераций")
+                print("Вычисление 1/sqrt(x)")
+                print("Введите x")
+                x = float(input())
+                print("Введите y0")
+                y0 = float(input())
+                print("Введите точность")
+                ebs = float(input())
+                res = MetodIteraciy2(x, y0, ebs)
+                print("Результат: ", res, '\n')
+
+            elif mean2 == 5:
                 special2 = False
