@@ -1,6 +1,7 @@
 from math import sqrt
 import math
 
+
 def task(x: float):
     return x*x+5*x+3
 
