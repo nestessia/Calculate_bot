@@ -364,46 +364,76 @@ while special1 == True:
         while special2 == True:
             special3 = True
             print("Выберите:\n"
-                  "[1] Метод Эйлера 1-й порядок\n"
-                  "[2] Метод Рунге-Кутта 1-й порядок")
+                  "[1] Метод Эйлера\n"
+                  "[2] Метод Рунге-Кутта")
             print("Для выхода в меню введите '3'")
             mean2 = int(input())
 
             if mean2 == 1:
-                print("Выбран 'Метод Эйлера для ДУ 1-го порядка'")
-                print("Введите ДУ первого порядка (правую часть выражения)")
-                f = str(input())
-                print("Введите нижнюю границу отрезка")
-                a = float(input())
-                print("Введите верхнюю границу отрезка")
-                b = float(input())
-                print("Введите X0")
-                x0 = float(input())
-                print("Введите Y0")
-                y0 = float(input())
-                print("Введите количество разбиений")
-                n = int(input())
-                print("Введите необходимое количество точек")
-                colResh = int(input())
-                Eiler_1_poryadok(x0, y0, a, b, n, f, colResh)
+                while special3 == True:
+                    print("Выберите:\n"
+                          "[1] ДУ 1-го порядка\n"
+                          "[2] ДУ 2-го порядка (система из 2-х ДУ первого порядка)\n"
+                          "[3] ДУ 3-го порядка (система из 3-х ДУ первого порядка)")
+                    print("Для возврата нажмите '4'")
+                    mean3 = int(input())
+
+                    if mean3 == 1:
+                        print("Выбран 'Метод Эйлера для ДУ 1-го порядка'")
+                        print("Введите ДУ первого порядка (правую часть выражения)")
+                        f = str(input())
+                        print("Введите нижнюю границу отрезка")
+                        a = float(input())
+                        print("Введите верхнюю границу отрезка")
+                        b = float(input())
+                        print("Введите X0")
+                        x0 = float(input())
+                        print("Введите Y0")
+                        y0 = float(input())
+                        print("Введите количество разбиений")
+                        n = int(input())
+                        print("Введите необходимое количество точек")
+                        colResh = int(input())
+                        Eiler_1_poryadok(x0, y0, a, b, n, f, colResh)
+                    elif mean3 == 2:
+                        ...
+                    elif mean3 == 3:
+                        ...
+                    elif mean3 == 4:
+                        special3 = False
 
             if mean2 == 2:
-                print("Выбран 'Метод Рунге-Кутта для ДУ 1-го порядка'")
-                print("Введите ДУ первого порядка (правую часть выражения)")
-                f = str(input())
-                print("Введите нижнюю границу отрезка")
-                a = float(input())
-                print("Введите верхнюю границу отрезка")
-                b = float(input())
-                print("Введите X0")
-                x0 = float(input())
-                print("Введите Y0")
-                y0 = float(input())
-                print("Введите количество разбиений")
-                n = int(input())
-                print("Введите необходимое количество точек")
-                colResh = int(input())
-                Runge_1_poryadok(x0, y0, a, b, n, f, colResh)
+                while special3 == True:
+                    print("Выберите:\n"
+                          "[1] ДУ 1-го порядка\n"
+                          "[2] ДУ 2-го порядка (система из 2-х ДУ первого порядка)\n"
+                          "[3] ДУ 3-го порядка (система из 3-х ДУ первого порядка)")
+                    print("Для возврата нажмите '4'")
+                    mean3 = int(input())
+
+                    if mean3 == 1:
+                        print("Выбран 'Метод Рунге-Кутта для ДУ 1-го порядка'")
+                        print("Введите ДУ первого порядка (правую часть выражения)")
+                        f = str(input())
+                        print("Введите нижнюю границу отрезка")
+                        a = float(input())
+                        print("Введите верхнюю границу отрезка")
+                        b = float(input())
+                        print("Введите X0")
+                        x0 = float(input())
+                        print("Введите Y0")
+                        y0 = float(input())
+                        print("Введите количество разбиений")
+                        n = int(input())
+                        print("Введите необходимое количество точек")
+                        colResh = int(input())
+                        Runge_1_poryadok(x0, y0, a, b, n, f, colResh)
+                    elif mean3 == 2:
+                        ...
+                    elif mean3 == 3:
+                        ...
+                    elif mean3 == 4:
+                        special3 = False
 
             elif mean2 == 3:
                 special2 = False
