@@ -144,7 +144,7 @@ def Eiler_1_poryadok(x0, y0, a, b, n, f:str, colResh):
     while (x < b) and (count < colResh):
         y += h * eval(f)
         x += h
-        print('x = ', round(x, 3), '  y = ', round(y, 3))
+        print('x = ', round(x, 5), '  y = ', round(y, 5))
         count += 1
 
 def Eiler_2_poryadok(x0, y0, z0, a, b, n, f1:str, f2:str, colResh):
@@ -201,7 +201,7 @@ def Runge_1_poryadok(x0, y0, a, b, n, f:str, colResh):
         F = (k1 + 2 * k2 + 2 * k3 + k4) / 6
         y = ybuffer + F
         x = xbuffer + h
-        print('x = ', round(x, 3), '  y = ', round(y, 3))
+        print('x = ', round(x, 5), '  y = ', round(y, 5))
         count += 1
 
 def Runge_2_poryadok(x0, y0, z0, a, b, n, f1:str, f2:str, colResh):
