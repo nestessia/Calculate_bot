@@ -161,6 +161,25 @@ def Eiler_2_poryadok(x0, y0, z0, a, b, n, f1:str, f2:str, colResh):
         x += h
         print('x = ', round(x, 5), '  y = ', round(y, 5), '  z = ', round(z, 5))
         count += 1
+
+def Eiler_3_poryadok(x0, y0, z0, t0, a, b, n, f1:str, f2:str, f3:str, colResh):
+    count = 0
+    h = (b-a) / n
+    x = x0
+    y = y0
+    z = z0
+    t = t0
+    while (t < b) and (count < colResh):
+        xBuf = x + h * eval(f1)
+        yBuf = y + h * eval(f2)
+        zBuf = z + h * eval(f3)
+        x = xBuf
+        y = yBuf
+        z = zBuf
+        t += h
+        print('t = ', round(t, 5), ' x = ', round(x, 5), '  y = ', round(y, 5), '  z = ', round(z, 5))
+        count += 1
+
 def Runge_1_poryadok(x0, y0, a, b, n, f:str, colResh):
     count = 0
     h = (b - a) / n
@@ -465,8 +484,33 @@ while special1 == True:
                         print("Введите необходимое количество точек")
                         colResh = int(input())
                         Eiler_2_poryadok(x0, y0, z0, a, b, n, f1, f2, colResh)
+
                     elif mean3 == 3:
-                        ...
+                        print("Выбран 'Метод Эйлера для ДУ 3-го порядка'")
+                        print("Введите 1-е ДУ системы")
+                        f1 = str(input())
+                        print("Введите 2-е ДУ системы")
+                        f2 = str(input())
+                        print("Введите 3-е ДУ системы")
+                        f3 = str(input())
+                        print("Введите нижнюю границу отрезка")
+                        a = float(input())
+                        print("Введите верхнюю границу отрезка")
+                        b = float(input())
+                        print("Введите t0")
+                        t0 = float(input())
+                        print("Введите X0")
+                        x0 = float(input())
+                        print("Введите Y0")
+                        y0 = float(input())
+                        print("Введите Z0")
+                        z0 = float(input())
+                        print("Введите количество разбиений")
+                        n = int(input())
+                        print("Введите необходимое количество точек")
+                        colResh = int(input())
+                        Eiler_3_poryadok(x0, y0, z0, t0, a, b, n, f1, f2, f3, colResh)
+
                     elif mean3 == 4:
                         special3 = False
 
@@ -474,9 +518,8 @@ while special1 == True:
                 while special3 == True:
                     print("Выберите:\n"
                           "[1] ДУ 1-го порядка\n"
-                          "[2] ДУ 2-го порядка (система из 2-х ДУ первого порядка)\n"
-                          "[3] ДУ 3-го порядка (система из 3-х ДУ первого порядка)")
-                    print("Для возврата нажмите '4'")
+                          "[2] ДУ 2-го порядка")
+                    print("Для возврата нажмите '3'")
                     mean3 = int(input())
 
                     if mean3 == 1:
@@ -499,9 +542,9 @@ while special1 == True:
 
                     elif mean3 == 2:
                         print("Выбран 'Метод Рунге-Кутта для ДУ 2-го порядка'")
-                        print("Введите 1-е ДУ системы")
+                        print("Введите 1-е ДУ после преобразований (z)")
                         f1 = str(input())
-                        print("Введите 2-е ДУ системы")
+                        print("Введите 2-е ДУ после преобразований")
                         f2 = str(input())
                         print("Введите нижнюю границу отрезка")
                         a = float(input())
@@ -518,9 +561,8 @@ while special1 == True:
                         print("Введите необходимое количество точек")
                         colResh = int(input())
                         Runge_2_poryadok(x0, y0, z0, a, b, n, f1, f2, colResh)
+
                     elif mean3 == 3:
-                        ...
-                    elif mean3 == 4:
                         special3 = False
 
             elif mean2 == 3:
