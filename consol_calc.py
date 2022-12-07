@@ -146,6 +146,21 @@ def Eiler_1_poryadok(x0, y0, a, b, n, f:str, colResh):
         x += h
         print('x = ', round(x, 3), '  y = ', round(y, 3))
         count += 1
+
+def Eiler_2_poryadok(x0, y0, z0, a, b, n, f1:str, f2:str, colResh):
+    count = 0
+    h = (b-a) / n
+    x = x0
+    y = y0
+    z = z0
+    while (x < b) and (count < colResh):
+        yBuf = y + h * eval(f1)
+        zBuf = z + h * eval(f2)
+        y = yBuf
+        z = zBuf
+        x += h
+        print('x = ', round(x, 5), '  y = ', round(y, 5), '  z = ', round(z, 5))
+        count += 1
 def Runge_1_poryadok(x0, y0, a, b, n, f:str, colResh):
     count = 0
     h = (b - a) / n
@@ -168,6 +183,39 @@ def Runge_1_poryadok(x0, y0, a, b, n, f:str, colResh):
         y = ybuffer + F
         x = xbuffer + h
         print('x = ', round(x, 3), '  y = ', round(y, 3))
+        count += 1
+
+def Runge_2_poryadok(x0, y0, z0, a, b, n, f1:str, f2:str, colResh):
+    count = 0
+    h = (b - a) / n
+    x = x0
+    y = y0
+    z = z0
+    while (x < b) and (count < colResh):
+        xbuffer = x
+        ybuffer = y
+        zbuffer = z
+        q1 = eval(f2)
+        k1 = eval(f1)
+        x = xbuffer + h/2
+        y = ybuffer + k1/2
+        z = zbuffer + q1/2
+        q2 = eval(f2)
+        k2 = eval(f1)
+        x = xbuffer + h / 2
+        y = ybuffer + k2 / 2
+        z = zbuffer + q2 / 2
+        q3 = eval(f2)
+        k3 = eval(f1)
+        x = xbuffer + h
+        y = ybuffer + k3
+        z = zbuffer + q3
+        q4 = eval(f2)
+        k4 = eval(f1)
+        x = xbuffer + h
+        y = ybuffer + h / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
+        z = zbuffer + h / 6 * (q1 + 2 * q2 + 2 * q3 + q4)
+        print('x = ', round(x, 5), '  y = ', round(y, 5), '  z = ', round(z, 5))
         count += 1
 
 special1 = True
@@ -395,8 +443,28 @@ while special1 == True:
                         print("Введите необходимое количество точек")
                         colResh = int(input())
                         Eiler_1_poryadok(x0, y0, a, b, n, f, colResh)
+
                     elif mean3 == 2:
-                        ...
+                        print("Выбран 'Метод Эйлера для ДУ 2-го порядка'")
+                        print("Введите 1-е ДУ системы")
+                        f1 = str(input())
+                        print("Введите 2-е ДУ системы")
+                        f2 = str(input())
+                        print("Введите нижнюю границу отрезка")
+                        a = float(input())
+                        print("Введите верхнюю границу отрезка")
+                        b = float(input())
+                        print("Введите X0")
+                        x0 = float(input())
+                        print("Введите Y0")
+                        y0 = float(input())
+                        print("Введите Z0")
+                        z0 = float(input())
+                        print("Введите количество разбиений")
+                        n = int(input())
+                        print("Введите необходимое количество точек")
+                        colResh = int(input())
+                        Eiler_2_poryadok(x0, y0, z0, a, b, n, f1, f2, colResh)
                     elif mean3 == 3:
                         ...
                     elif mean3 == 4:
@@ -428,8 +496,28 @@ while special1 == True:
                         print("Введите необходимое количество точек")
                         colResh = int(input())
                         Runge_1_poryadok(x0, y0, a, b, n, f, colResh)
+
                     elif mean3 == 2:
-                        ...
+                        print("Выбран 'Метод Рунге-Кутта для ДУ 2-го порядка'")
+                        print("Введите 1-е ДУ системы")
+                        f1 = str(input())
+                        print("Введите 2-е ДУ системы")
+                        f2 = str(input())
+                        print("Введите нижнюю границу отрезка")
+                        a = float(input())
+                        print("Введите верхнюю границу отрезка")
+                        b = float(input())
+                        print("Введите X0")
+                        x0 = float(input())
+                        print("Введите Y0")
+                        y0 = float(input())
+                        print("Введите Z0")
+                        z0 = float(input())
+                        print("Введите количество разбиений")
+                        n = int(input())
+                        print("Введите необходимое количество точек")
+                        colResh = int(input())
+                        Runge_2_poryadok(x0, y0, z0, a, b, n, f1, f2, colResh)
                     elif mean3 == 3:
                         ...
                     elif mean3 == 4:
