@@ -133,6 +133,43 @@ def MetodIteraciy2(x:float, y0:float, ebs:float):
         res = (res / 2)*(3 - x * res**2)
     return res
 
+def calcEval(f):
+    return eval(f)
+
+def Eiler_1_poryadok(x0, y0, a, b, n, f:str, colResh):
+    count = 0
+    h = (b-a) / n
+    x = x0
+    y = y0
+    while (x < b) and (count < colResh):
+        y += h * eval(f)
+        x += h
+        print('x = ', round(x, 3), '  y = ', round(y, 3))
+        count += 1
+def Runge_1_poryadok(x0, y0, a, b, n, f:str, colResh):
+    count = 0
+    h = (b - a) / n
+    x = x0
+    y = y0
+    while (x < b) and (count < colResh):
+        xbuffer = x
+        ybuffer = y
+        k1 = h * eval(f)
+        x = xbuffer + h/2
+        y = ybuffer + k1/2
+        k2 = h * eval(f)
+        x = xbuffer + h/2
+        y = ybuffer + k2/2
+        k3 = h * eval(f)
+        x = xbuffer + h
+        y = ybuffer + k3
+        k4 = h * eval(f)
+        F = (k1 + 2 * k2 + 2 * k3 + k4) / 6
+        y = ybuffer + F
+        x = xbuffer + h
+        print('x = ', round(x, 3), '  y = ', round(y, 3))
+        count += 1
+
 special1 = True
 while special1 == True:
     special2 = True
@@ -140,6 +177,7 @@ while special1 == True:
     print("Для выбора задачи нажмите соответствующую кнопку:")
     print('[1]Численное интегрирование\n'
           '[2]Вычисление элементарной функции\n'
+          '[3]Численное решение ДУ\n'
           'more will comming soon')
     mean1 = int(input())
 
@@ -321,4 +359,51 @@ while special1 == True:
                 print("Результат: ", res, '\n')
 
             elif mean2 == 5:
+                special2 = False
+    elif mean1 == 3:
+        while special2 == True:
+            special3 = True
+            print("Выберите:\n"
+                  "[1] Метод Эйлера 1-й порядок\n"
+                  "[2] Метод Рунге-Кутта 1-й порядок")
+            print("Для выхода в меню введите '3'")
+            mean2 = int(input())
+
+            if mean2 == 1:
+                print("Выбран 'Метод Эйлера для ДУ 1-го порядка'")
+                print("Введите ДУ первого порядка (правую часть выражения)")
+                f = str(input())
+                print("Введите нижнюю границу отрезка")
+                a = float(input())
+                print("Введите верхнюю границу отрезка")
+                b = float(input())
+                print("Введите X0")
+                x0 = float(input())
+                print("Введите Y0")
+                y0 = float(input())
+                print("Введите количество разбиений")
+                n = int(input())
+                print("Введите необходимое количество точек")
+                colResh = int(input())
+                Eiler_1_poryadok(x0, y0, a, b, n, f, colResh)
+
+            if mean2 == 2:
+                print("Выбран 'Метод Рунге-Кутта для ДУ 1-го порядка'")
+                print("Введите ДУ первого порядка (правую часть выражения)")
+                f = str(input())
+                print("Введите нижнюю границу отрезка")
+                a = float(input())
+                print("Введите верхнюю границу отрезка")
+                b = float(input())
+                print("Введите X0")
+                x0 = float(input())
+                print("Введите Y0")
+                y0 = float(input())
+                print("Введите количество разбиений")
+                n = int(input())
+                print("Введите необходимое количество точек")
+                colResh = int(input())
+                Runge_1_poryadok(x0, y0, a, b, n, f, colResh)
+
+            elif mean2 == 3:
                 special2 = False
