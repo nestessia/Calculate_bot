@@ -206,13 +206,13 @@ def which_Eiler(message):
 @bot.message_handler(content_types=["text"])
 def which_poryadok_Eiler(message):
     if message.text == "ДУ 1-го порядка":
-        bot.send_message(message.chat.id, 'Введите ДУ первого порядка')
+        bot.send_message(message.chat.id, 'Введите ДУ первого порядка в нижнем регисте')
         bot.register_next_step_handler(message, get_exp_for_diff1)
     elif message.text == "ДУ 2-го порядка":
-        bot.send_message(message.chat.id, 'Введите 1-е ДУ системы')
+        bot.send_message(message.chat.id, 'Введите 1-е ДУ системы в нижнем регисте')
         bot.register_next_step_handler(message, get_exp1_for_diff2)     
     elif message.text == "ДУ 3-го порядка":
-        bot.send_message(message.chat.id, 'Введите 1-е ДУ системы')
+        bot.send_message(message.chat.id, 'Введите 1-е ДУ системы в нижнем регисте')
         bot.register_next_step_handler(message, get_exp1_for_diff3)     
     elif message.text == "Назад":
         dif(message)     
@@ -229,10 +229,10 @@ def which_Runge(message):
 @bot.message_handler(content_types=["text"])
 def which_poryadok_Runge(message):
     if message.text == "ДУ 1-го порядка":
-        bot.send_message(message.chat.id, 'Введите ДУ первого порядка')
+        bot.send_message(message.chat.id, 'Введите ДУ первого порядка в нижнем регисте')
         bot.register_next_step_handler(message, get_exp1_for_RK1)
     elif message.text == "ДУ 2-го порядка":
-        bot.send_message(message.chat.id, 'Введите 1-е ДУ системы')
+        bot.send_message(message.chat.id, 'Введите 1-е ДУ системы в нижнем регисте')
         bot.register_next_step_handler(message, get_exp1_for_RK2)         
     elif message.text == "Назад":
         dif(message)     
@@ -336,7 +336,7 @@ def get_exp1_for_diff2(message):
     try:
         global user_expression1
         user_expression1 = message.text
-        bot.send_message(message.chat.id, text='Введите 2-е ДУ системы:')
+        bot.send_message(message.chat.id, text='Введите 2-е ДУ системы в нижнем регисте:')
         bot.register_next_step_handler(message, get_exp2_for_diff2)
     except Exception as e:
         bot.reply_to(message, 'Что-то пошло не так... Вы точно ввели число? Проверьте корректность написания вещественного числа и попробуйте заново.') 
@@ -447,7 +447,7 @@ def get_exp1_for_diff3(message):
     try:
         global user_expression1
         user_expression1 = message.text
-        bot.send_message(message.chat.id, text='Введите 2-е ДУ системы:')
+        bot.send_message(message.chat.id, text='Введите 2-е ДУ системы в нижнем регисте:')
         bot.register_next_step_handler(message, get_exp2_for_diff3)
     except Exception as e:
         bot.reply_to(message, 'Что-то пошло не так... Вы точно ввели число? Проверьте корректность написания вещественного числа и попробуйте заново.') 
@@ -457,7 +457,7 @@ def get_exp2_for_diff3(message):
     try:
         global user_expression2
         user_expression2 = message.text
-        bot.send_message(message.chat.id, text='Введите 3-е ДУ системы:')
+        bot.send_message(message.chat.id, text='Введите 3-е ДУ системы в нижнем регисте:')
         bot.register_next_step_handler(message, get_exp3_for_diff3)
     except Exception as e:
         bot.reply_to(message, 'Что-то пошло не так... Вы точно ввели число? Проверьте корректность написания вещественного числа и попробуйте заново.') 
@@ -682,7 +682,7 @@ def get_exp1_for_RK2(message):
     try:
         global user_expression1
         user_expression1 = message.text
-        bot.send_message(message.chat.id, text='Введите 2-е ДУ системы:')
+        bot.send_message(message.chat.id, text='Введите 2-е ДУ системы в нижнем регисте:')
         bot.register_next_step_handler(message, get_exp2_for_RK2)
     except Exception as e:
         bot.reply_to(message, 'Что-то пошло не так... Вы точно ввели число? Проверьте корректность написания вещественного числа и попробуйте заново.') 
